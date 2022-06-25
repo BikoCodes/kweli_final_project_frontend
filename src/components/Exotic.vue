@@ -115,6 +115,8 @@ export default {
 
     mounted(){
       this.getLatestProducts()
+
+      document.title = 'Exotic | Food'
     },
 
     methods: {
@@ -139,16 +141,21 @@ export default {
             }, 3000)
         },
 
-        getLatestProducts(){
-          // const baseURL = 'http://127.0.0.1:8000/';
-          axios
-            .get('/api/v1/latest-products/')
-            .then(response => {
-              this.latestProducts = response.data
-            })
-            .catch(error => {
-              console.log(error)
-            })
+        async getLatestProducts(){
+           this.$store.commit('setIsLoading', true)
+
+          await axios
+              .get('/api/v1/latest-products/')
+              .then(response => {
+                this.latestProducts = response.data
+              })
+              .catch(error => {
+                console.log(error)
+              })
+
+            this.$store.commit('setIsLoading', false)
+
+            
         }
 
     },
