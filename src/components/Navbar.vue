@@ -20,38 +20,39 @@
             ></div>
           </router-link>
 
-          <router-link to="/pricing" class="text-lg md:text-base lg:text-lg font-medium group">
-            Local Foods
+          <router-link to="/exotic" class="text-lg md:text-base lg:text-lg font-medium group">
+            Exotic Foods
             <div
               class="h-0.5 bg-green scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"
             ></div>
           </router-link>
 
-          <router-link to="/pricing" class="text-lg md:text-base lg:text-lg font-medium group">
+          <router-link to="/foreign" class="text-lg md:text-base lg:text-lg font-medium group">
             Foreigin Foods
             <div
               class="h-0.5 bg-green scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"
             ></div>
           </router-link>
 
-          <router-link to="/faq" class="text-lg md:text-base lg:text-lg font-medium group">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            Cart
+          <router-link to="" class="text-lg md:text-base lg:text-lg font-medium group">
+            <div class="flex">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              Cart ({{ cartTotalLength }}) </div>
             <div
               class="h-0.5 bg-green scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"
             ></div>
           </router-link>
 
-          <router-link to="/contact" class="text-lg md:text-base lg:text-lg font-medium group">
+          <router-link to="" class="text-lg md:text-base lg:text-lg font-medium group">
             Contact
             <div
               class="h-0.5 bg-green scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"
             ></div>
           </router-link>
 
-          <router-link to="/login" class="text-lg md:text-base lg:text-lg font-medium group">
+          <router-link to="" class="text-lg md:text-base lg:text-lg font-medium group">
             Login
             <div
               class="h-0.5 bg-green scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"
@@ -86,9 +87,25 @@ export default {
   data() {
     return {
       sidebarOpen : false,
-      activeMenu : "text-green"
+      activeMenu : "text-green",
+      cart: {
+        items: []
+      }
     }
   },
+
+  computed: {
+    cartTotalLength(){
+      let totalLength = 0
+
+      for(let i = 0; i < this.cart.items.length; i++){
+        totalLength += this.cart.items[i].quantity
+      }
+      return totalLength
+    }      
+
+
+  }
 }
 
 </script>

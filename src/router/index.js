@@ -1,11 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ExoticView from '../views/ExoticView.vue'
+import ForeignView from '../views/ForeignView.vue'
+import Product from '../views/ProductView.vue'
+
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/exotic',
+    name: 'exotic',
+    component: ExoticView
+  },
+  {
+    path: '/foreign',
+    name: 'foreign',
+    component: ForeignView
+  },
+  {
+    path: '/:category_slug/:product_slug/',
+    name: 'Product',
+    component: Product
   },
   {
     path: '/about',

@@ -4,6 +4,9 @@
     
   >
     <Navbar/>
+    <div>
+      <div :class="{'is-loading': $store.state.isLoading }"></div>
+    </div>
     <router-view></router-view>
   </div>
   
@@ -15,6 +18,21 @@ import Navbar from '@/components/Navbar.vue'
 export default {
   components: {
     Navbar
+  },
+  data(){
+    return {
+      cart: {
+        items: []
+      }
+    }
+  },
+
+  beforeCreate(){
+    this.$store.commit('initializeStore')
+  },
+
+  mounted(){
+    // this.cart = this.$store.state.cart
   }
 }
 </script>
