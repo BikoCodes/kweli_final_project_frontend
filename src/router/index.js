@@ -4,6 +4,7 @@ import ExoticView from '../views/ExoticView.vue'
 import ForeignView from '../views/ForeignView.vue'
 import Product from '../views/ProductView.vue'
 import CategoryView from '../views/CategoryView.vue'
+import SearchView from '../views/SearchView.vue'
 
 
 const routes = [
@@ -11,6 +12,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: SearchView
   },
   {
     path: '/exotic',
