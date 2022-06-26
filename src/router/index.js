@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ExoticView from '../views/ExoticView.vue'
 import ForeignView from '../views/ForeignView.vue'
 import Product from '../views/ProductView.vue'
+import CategoryView from '../views/CategoryView.vue'
 
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: '/:category_slug/:product_slug/',
     name: 'Product',
     component: Product
+  },
+  {
+    path: '/category_slug',
+    name: 'category',
+    component: CategoryView
   },
   {
     path: '/about',
