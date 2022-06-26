@@ -1,9 +1,7 @@
 <template>
-
-<div>
+  <div>
     <Exotic/>
-</div>
-  
+  </div>
 </template>
 
 <script>
@@ -11,10 +9,8 @@ import Exotic from '@/components/Exotic.vue'
 
 export default {
     name: 'ExoticView',
-
     components: {
         Exotic
     }
-
 }
 </script>

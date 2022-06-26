@@ -23,7 +23,7 @@ const routes = [
     component: ForeignView
   },
   {
-    path: '/:category_slug/:product_slug/',
+    path: '/:category_slug/:product_slug',
     name: 'Product',
     component: Product
   },

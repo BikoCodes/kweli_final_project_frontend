@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <Foreign/>
   </div>
@@ -6,12 +7,12 @@
 
 <script>
 import Foreign from '@/components/Foreign.vue'
-
 export default {
     name: 'ForeignView',
 
     components: {
-        Foreign
+      Foreign
+      
     }
 }
 </script>
