@@ -13,6 +13,7 @@ import SignUpView from '../views/SignUpView.vue'
 import LogInView from '../views/LogInView.vue'
 import MyAccountView from '../views/MyAccountView.vue'
 import CheckOutView from '../views/CheckOutView.vue'
+import SuccessView from '../views/SuccessView.vue'
 
 
 const routes = [
@@ -34,15 +35,21 @@ const routes = [
     name: 'search',
     component: SearchView
   },
+  
+  {
+    path: '/cart',
+    name: 'cart',
+    component: CartView
+  },
   {
     path: '/cart/checkout',
     name: 'checkout',
     component: CheckOutView
   },
   {
-    path: '/cart',
-    name: 'cart',
-    component: CartView
+    path: '/cart/success',
+    name: 'success',
+    component: SuccessView
   },
   {
     path: '/sign-up',
