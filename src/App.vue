@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Navbar from '@/components/Navbar.vue'
 
 export default {
@@ -29,10 +30,18 @@ export default {
 
   beforeCreate(){
     this.$store.commit('initializeStore')
+
+    const token = this.$store.state.token
+
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = "Token " + token
+    } else {
+        axios.defaults.headers.common['Authorization'] = ""
+    }
   },
 
   mounted(){
-    // this.cart = this.$store.state.cart
+    this.cart = this.$store.state.cart
   }
 }
 </script>

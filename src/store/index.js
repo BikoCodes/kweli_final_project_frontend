@@ -3,9 +3,9 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     cart: {
-      items: [{'eee': 1}],
+      items: [],
     },
-    isAutheticated: false,
+    isAuthenticated: false,
     token: '',
     isLoading: false
   },
@@ -16,6 +16,13 @@ export default createStore({
         state.cart = JSON.parse(localStorage.getItem('cart'))
       } else {
         localStorage.setItem('cart', JSON.stringify(state.cart))
+      }
+      if (localStorage.getItem('token')) {
+        state.token = localStorage.getItem('token')
+        state.isAuthenticated = true
+      } else {
+          state.token = ''
+          state.isAuthenticated = false
       }
     },
 
@@ -32,6 +39,16 @@ export default createStore({
 
     setIsLoading(state, status){
       state.isLoading = status
+    },
+
+    setToken(state, token) {
+      state.token = token
+      state.isAuthenticated = true
+    },
+      
+    removeToken(state) {
+        state.token = ''
+        state.isAuthenticated = false
     },
 
   },

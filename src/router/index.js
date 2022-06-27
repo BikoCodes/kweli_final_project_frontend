@@ -1,13 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import store from '@/store'
+
 import HomeView from '../views/HomeView.vue'
 import ExoticView from '../views/ExoticView.vue'
 import ForeignView from '../views/ForeignView.vue'
 import Product from '../views/ProductView.vue'
 import CategoryView from '../views/CategoryView.vue'
 import SearchView from '../views/SearchView.vue'
+import CartView from '../views/CartView.vue'
+import SignUpView from '../views/SignUpView.vue'
+import LogInView from '../views/LogInView.vue'
+import MyAccountView from '../views/MyAccountView.vue'
+import CheckOutView from '../views/CheckOutView.vue'
 
 
 const routes = [
+  {
+    path: '/my-account',
+    name: 'my-account',
+    component: MyAccountView,
+    meta: {
+      requireLogin: true
+    }
+  },
   {
     path: '/',
     name: 'home',
@@ -17,6 +33,26 @@ const routes = [
     path: '/search',
     name: 'search',
     component: SearchView
+  },
+  {
+    path: '/cart/checkout',
+    name: 'checkout',
+    component: CheckOutView
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: CartView
+  },
+  {
+    path: '/sign-up',
+    name: 'sign-up',
+    component: SignUpView
+  },
+  {
+    path: '/log-in',
+    name: 'log-in',
+    component: LogInView
   },
   {
     path: '/exotic',
@@ -51,6 +87,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
+    next({ name: 'LogInView', query: { to: to.path } });
+  } else {
+    next()
+  }
 })
 
 export default router

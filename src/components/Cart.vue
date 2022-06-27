@@ -8,64 +8,130 @@
           <div>
             <!-- Product Item -->
             <div class="flex flex-col sm:flex-row items-center gap-4">
-              <img src="/src/img/1_1.jpg" class="w-36" alt="" />
-              <div class="flex flex-col justify-between">
-                <div class="flex justify-between mb-3">
-                  <h3>
-                    Logitech G502 HERO High Performance Wired Gaming Mouse, HERO
-                    25K Sensor, 25,600 DPI, RGB, Adjustable Weights, 11
-                  </h3>
-                  <span class="text-lg font-semibold"> $17.99 </span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <div class="flex items-center">
-                    Qty:
-                    <select
-                      name=""
-                      id=""
-                      class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600"
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                    </select>
+                    
+              <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="overflow-hidden">
+                      <table class="min-w-full" v-if="cartTotalLength">
+                        <thead class="bg-white border-b" >
+                          <tr>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                              Product
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                              Price
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                              Quantity
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                              Total
+                            </th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <CartItem
+                            v-for="item in cart.items"
+                            :key="item.product.id"
+                            :initialItem="item"
+                            v-on:removeFromCart="removeFromCart"/>
+
+                        </tbody>
+                      </table>
+
+                      <p v-else>You don't have any product in your cart...</p>
+            
+                    </div>
+
+                    <div class="border-t border-gray-300 pt-4">
+                      <div class="flex justify-between">
+                        <span class="font-semibold">Subtotal</span>
+                        <span class="text-xl">Ksh.{{ cartTotalLength.toFixed(2) }}, {{ cartTotalLength }} items</span>
+                      </div>
+                      <p class="text-gray-500 mb-6">
+                        Shipping and taxes calculated at checkout.
+                      </p>
+                      <hr>
+
+                      <router-link to="/cart/checkout" type="submit" class="btn-primary w-full py-3 text-lg">
+                        Proceed to Checkout
+                      </router-link>
+                    </div>
                   </div>
-                  <a href="#" class="text-purple-600 hover:text-purple-500"
-                    >Remove</a
-                  >
                 </div>
               </div>
+                    
             </div>
-            <!--/ Product Item -->
-            <hr class="my-5" />
-            
-          </div>
-          <!--/ Product Items -->
-
-          <div class="border-t border-gray-300 pt-4">
-            <div class="flex justify-between">
-              <span class="font-semibold">Subtotal</span>
-              <span class="text-xl">Ksh. 157</span>
-            </div>
-            <p class="text-gray-500 mb-6">
-              Shipping and taxes calculated at checkout.
-            </p>
-
-            <button type="submit" class="btn-primary w-full py-3 text-lg">
-              Proceed to Checkout
-            </button>
           </div>
         </div>
+          
+            <hr class="my-5" />
+
+           
       </div>
+
+      <div class="border-t border-gray-300 pt-4">
+        <div class="flex justify-between">
+          <span class="font-semibold">Subtotal</span>
+          <span class="text-xl">Ksh. 157</span>
+        </div>
+        <p class="text-gray-500 mb-6">
+          Shipping and taxes calculated at checkout.
+        </p>
+
+        <button type="submit" class="btn-primary w-full py-3 text-lg">
+          Proceed to Checkout
+        </button>
+      </div>
+        
     </main>
 </template>
 
 <script>
-export default {
+import axios from 'axios'
+import CartItem from '@/components/CartItem.vue'
 
+export default {
+  name: "Cart",
+
+  components: {
+    CartItem
+  },
+
+  data(){
+    return {
+      cart: {
+        items: []
+      }
+    }
+  },
+
+  methods: {
+    removeFromCart(item) {
+            this.cart.items = this.cart.items.filter(i => i.product.id !== item.product.id)
+    }
+  },
+
+  computed: {
+    cartTotalLength(){
+      return this.cart.items.reduce((acc, curVal) => {
+        return acc += curVal.quantity
+      }, 0)
+    },
+
+    cartTotalPrice(){
+      return this.cart.items.reduce((acc, curVal) => {
+        return acc += curVal.product.price * curVal.quantity
+      })
+    }
+
+  },
+
+  mounted(){
+    this.cart = this.$store.state.cart
+  },
 }
 </script>
