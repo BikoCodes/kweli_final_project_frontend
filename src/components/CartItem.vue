@@ -2,9 +2,9 @@
 
     <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            <router-link :to="item.product.get_absolute_url">{{ item.product.name }}</router-link>
+            <router-link :to="item.get_absolute_url">{{ initialItem.name }}</router-link>
         </td>
-        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Ksh.{{ item.product.price }}</td>
+        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Ksh.{{ initialItem.price }}</td>
         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
             {{ item.quantity }}
             <a @click="decrementQuantity(item)">-</a>
@@ -15,7 +15,7 @@
         </td>
         <td>
             <button class="delete text-purple-600 hover:text-purple-500"
-                @click="removeFromCart(item)"></button>
+                @click="removeFromCart(item)">Remove</button>
         </td>
     </tr>
   
@@ -29,6 +29,7 @@ export default {
         initialItem: Object
     },
 
+
     data(){
         return {
             item: this.initialItem
@@ -37,7 +38,8 @@ export default {
 
     methods: {
         getItemTotal(item){
-            return item.quantity * item.product.price
+            console.log('AND THIS IS THE TOTAL', this.initialItem)
+            return item.quantity * this.initialItem.price
         },
 
         decrementQuantity(item) {

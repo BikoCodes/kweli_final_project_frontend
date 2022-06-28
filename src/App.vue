@@ -29,11 +29,11 @@ export default {
   },
 
   beforeCreate(){
-    this.$store.commit('initializeStore')
+    this.$store.commit('INITIALIZE_STORE')
 
     const token = this.$store.state.token
 
-    if (token) {
+    if(token) {
         axios.defaults.headers.common['Authorization'] = "Token " + token
     } else {
         axios.defaults.headers.common['Authorization'] = ""

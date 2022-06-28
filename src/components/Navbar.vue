@@ -63,11 +63,19 @@
           </router-link>
 
         </div>
+
+        <button
+          class="flex justify-center items-center h-13 px-7 font-medium text-white bg-green rounded-xl hover:shadow-primary transition-shadow duration-300 whitespace-nowrap"
+          v-if="$store.state.isAuthenticated" @click.prevent="logout()"
+        >
+          Log out
+        </button>
    
         <button
           class="flex justify-center items-center h-13 px-7 font-medium text-white bg-green rounded-xl hover:shadow-primary transition-shadow duration-300 whitespace-nowrap"
+          v-else
         >
-         <router-link to="/sign-up" >
+         <router-link to="/sign-up">
           Register
          </router-link>
         </button>
@@ -96,8 +104,8 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters } from 'vuex';
-
 
 export default {
   name: "Navbar",
@@ -110,6 +118,19 @@ export default {
         items: []
       }
     }
+  },
+
+  methods:{
+
+    logout() {
+            axios.defaults.headers.common["Authorization"] = ""
+            localStorage.removeItem("token")
+            localStorage.removeItem("username")
+            localStorage.removeItem("userid")
+            this.$store.commit('removeToken')
+            this.$router.push('/')
+    },
+
   },
 
   computed: {

@@ -8,14 +8,13 @@
     </div>
 
     <main class="p-5">
-        <div class="grid gap-4 grid-cols-12 lg:grid-cols-3  p-5" >
+        <div class="grid gap-4 grid-cols-1 lg:grid-cols-3  p-5" >
              <ProductBox 
                 v-for="product in latestProducts"
                 :key="product.id"
                 :product="product"/>
         </div>
     </main>
-   
     
 </template>
 

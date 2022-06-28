@@ -107,7 +107,7 @@ export default {
 
         if(!this.errors.length) {
             const formData = {
-                email: this.email,
+                username: this.username,
                 password: this.password
             }
 

@@ -13,12 +13,12 @@
         </p>
         <div class="mb-4">
           <input
-            id="loginEmail"
-            type="email"
-            name="email"
-            placeholder="Your email address"
+            id="username"
+            type="text"
+            name="username"
+            placeholder="Your username"
             class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full"
-            v-model="email"
+            v-model="username"
           />
         </div>
         <div class="mb-4">
@@ -66,7 +66,7 @@ export default {
 
     data() {
         return {
-            email: '',
+            username: '',
             password: '',
             errors: []
         }
@@ -78,23 +78,29 @@ export default {
 
     methods: {
         async submitForm() {
+
             axios.defaults.headers.common["Authorization"] = ""
             localStorage.removeItem("token")
 
             const formData = {
-                email: this.email,
+                username: this.username,
                 password: this.password
             }
     
             await axios
                 .post("/api/v1/token/login/", formData)
                 .then(response => {
+
                     const token = response.data.auth_token
-                    this.$store.commit('setToken', token)
+
+                    this.$store.commit('SET_TOKEN', token)
                     
                     axios.defaults.headers.common["Authorization"] = "Token " + token
+
                     localStorage.setItem("token", token)
+
                     const toPath = this.$route.query.to || '/cart'
+                    
                     this.$router.push(toPath)
                 })
                 .catch(error => {

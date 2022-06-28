@@ -7,7 +7,7 @@
             <img
               :src="product.get_thumbnail"
               alt=""
-              class="rounded-lg hover:scale-105 hover:rotate-1 transition-transform"
+              class="rounded-lg hover:scale-105 hover:rotate-1 transition-transform h-72 w-full object-cover"
             />
           </div>
           <div class="p-4">

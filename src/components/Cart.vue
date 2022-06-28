@@ -4,10 +4,7 @@
         <h1 class="text-3xl font-bold mb-6">Your Cart Items</h1>
 
         <div class="bg-white p-4 rounded-lg shadow">
-          <div>
-            <div class="flex flex-col sm:flex-row items-center gap-4">
-                    
-              <div class="flex flex-col">
+          <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
@@ -32,8 +29,8 @@
                         <tbody>
 
                           <CartItem
-                            v-for="item in cart.items"
-                            :key="item.product.id"
+                            v-for="item, index in cart.items"
+                            :key="index"
                             :initialItem="item"
                             v-on:removeFromCart="removeFromCart"/>
 
@@ -48,7 +45,7 @@
                     <div class="border-t border-gray-300 pt-4">
                       <div class="flex justify-between">
                         <span class="font-semibold">Subtotal</span>
-                        <span class="text-xl">Ksh.{{ cartTotalLength.toFixed(2) }}, {{ cartTotalLength }} items</span>
+                        <span class="text-xl">Ksh{{ cartTotalLength.toFixed(2) }}, {{ cartTotalLength }} items</span>
                       </div>
                       <p class="text-gray-500 mb-6">
                         Shipping and taxes calculated at checkout.
@@ -62,9 +59,6 @@
                   </div>
                 </div>
               </div>
-                    
-            </div>
-          </div>
         </div>
             
       </div>
