@@ -2,15 +2,18 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    
     cart: {
       items: [],
     },
+    cartItemCount: 0,
     isAuthenticated: false,
     token: '',
     isLoading: false
   },
-
+  
   mutations: {
+    
     initializeStore(state){
       if(localStorage.getItem('cart')){
         state.cart = JSON.parse(localStorage.getItem('cart'))
@@ -26,9 +29,10 @@ export default createStore({
       }
     },
 
-    addToCart(state, item){
-      const exist = state.cart.items.filter(i => i.product.id === item.product.id)
-
+    ADD_TO_CART(state, item){
+      this.cartItemCount++;
+      const exist = state.cart.items.filter(i => i.id === item.id)
+      console.log(exist)
       if(exist.length){
         exist[0].quantity = parseInt(exist[0].quantity) + parseInt(item.quantity)
       } else {
@@ -54,9 +58,17 @@ export default createStore({
   },
 
   actions: {
+
+    addToCart({commit}, item){
+      console.log(`store: addToCart ${item}`)
+      commit('ADD_TO_CART',item)
+    }
   },
 
   getters: {
+    getCartItems: state => {
+      return state.cart.items;
+    }
   },
 
   modules: {

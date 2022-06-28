@@ -1,15 +1,19 @@
 <template>
-  <div class="page-search">
+  <div class="flex flex-wrap items-center text-black ">
     <div>
-        <h1 class="title">Search</h1>
-        <h2>Search term: "{{ query }}"</h2>
+        <h1 class="text-xl ">Search</h1>
+        <h2 class="text-lg">Search term: "{{ query }}"</h2>
+    </div>
     </div>
 
-    <ProductBox
+    <div class="">
+        <ProductBox
         v-for="product in products"
         :key="product.id"
         :product="product"/>
-  </div>
+    </div>
+    
+
 </template>
 
 <script>

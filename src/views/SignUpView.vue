@@ -19,7 +19,7 @@
           <input
             placeholder="Your Username"
             type="text"
-            name="name"
+            name="username"
             class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full"
             v-model="username"
           />
@@ -93,6 +93,10 @@ export default {
                 this.errors.push('The username is missing')
             }
 
+        if (this.email === '') {
+                this.errors.push('The email is missing')
+            }
+
         if (this.password === '') {
             this.errors.push('The password is too short')
         }
@@ -103,7 +107,7 @@ export default {
 
         if(!this.errors.length) {
             const formData = {
-                username: this.username,
+                email: this.email,
                 password: this.password
             }
 

@@ -86,8 +86,9 @@
                 v-model="quantity"
               />
             </div>
+
             <button
-              class="btn-primary py-4 text-lg flex justify-center min-w-0 w-full mb-6"
+              class="btn-primary py-4 text-lg flex justify-end min-w-0 w-full mb-6"
               @click="addToCart"
             >
               <svg
@@ -107,7 +108,7 @@
               Add to Cart
             </button>
             <div class="text-gray-500 mb-6 wysiwyg-content">
-              <h4>About the meal</h4>
+              <h4 class="text-lg font-medium text-black">About the meal</h4>
               <ul class="list-disc pl-6">
                 <li>
                     {{ product.description }}
@@ -144,7 +145,7 @@ export default {
                 .then(response => {
                   this.product = response.data
 
-                  document.title =this.product.name + ' | Food'
+                  document.title = this.product.name + ' | Food'
                 })
                 .catch(error => {
                   console.log(error)
@@ -152,18 +153,6 @@ export default {
               this.$store.commit('setIsLoading', false)
         },
 
-        addToCart(){
-          if (isNaN(this.quantity) || this.quantity < 1){
-            this.quantity = 1
-          }
-
-          const item = {
-            product: this.product,
-            quantity: this.quantity
-          }
-
-          this.$store.commit('addToCart', item)
-        }
     },
 
     mounted(){

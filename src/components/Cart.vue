@@ -4,9 +4,7 @@
         <h1 class="text-3xl font-bold mb-6">Your Cart Items</h1>
 
         <div class="bg-white p-4 rounded-lg shadow">
-          <!-- Product Items -->
           <div>
-            <!-- Product Item -->
             <div class="flex flex-col sm:flex-row items-center gap-4">
                     
               <div class="flex flex-col">
@@ -46,6 +44,7 @@
             
                     </div>
 
+                    <hr>
                     <div class="border-t border-gray-300 pt-4">
                       <div class="flex justify-between">
                         <span class="font-semibold">Subtotal</span>
@@ -67,26 +66,9 @@
             </div>
           </div>
         </div>
-          
-            <hr class="my-5" />
-
-           
+            
       </div>
-
-      <div class="border-t border-gray-300 pt-4">
-        <div class="flex justify-between">
-          <span class="font-semibold">Subtotal</span>
-          <span class="text-xl">Ksh. 157</span>
-        </div>
-        <p class="text-gray-500 mb-6">
-          Shipping and taxes calculated at checkout.
-        </p>
-
-        <button type="submit" class="btn-primary w-full py-3 text-lg">
-          Proceed to Checkout
-        </button>
-      </div>
-        
+     
     </main>
 </template>
 

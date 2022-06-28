@@ -45,7 +45,7 @@
             />
             <label for="loginRememberMe">Remember Me</label>
           </div>
-          <a href="/src/password-reset.html" class="text-sm text-purple-700 hover:text-purple-600">Forgot Password?</a>
+          <a href="/passwordrest" class="text-sm text-purple-700 hover:text-purple-600">Forgot Password?</a>
         </div>
 
         <hr>

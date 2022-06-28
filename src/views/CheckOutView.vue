@@ -207,9 +207,9 @@ export default {
         this.cart = this.$store.state.cart
 
         if (this.cartTotalLength > 0) {
-            this.stripe = Stripe('pk_test_51H1HiuKBJV2qfWbD2gQe6aqanfw6Eyul5PO2KeOuSRlUMuaV4TxEtaQyzr9DbLITSZweL7XjK3p74swcGYrE2qEX00Hz7GmhMI')
+            this.mpesa = Mpesa('pk_test_51H1HiuKBJV2qfWbD2gQe6aqanfw6Eyul5PO2KeOuSRlUMuaV4TxEtaQyzr9DbLITSZweL7XjK3p74swcGYrE2qEX00Hz7GmhMI')
             
-            const elements = this.stripe.elements();
+            const elements = this.mpesa.elements();
 
             this.card = elements.create('card', { hidePostalCode: true })
             this.card.mount('#card-element')
@@ -248,19 +248,19 @@ export default {
 
             if (!this.errors.length) {
                 this.$store.commit('setIsLoading', true)
-                this.stripe.createToken(this.card).then(result => {                    
+                this.mpesa.createToken(this.card).then(result => {                    
                     if (result.error) {
                         this.$store.commit('setIsLoading', false)
-                        this.errors.push('Something went wrong with Stripe. Please try again')
+                        this.errors.push('Something went wrong with Mpesa. Please try again')
                         console.log(result.error.message)
                     } else {
-                        this.stripeTokenHandler(result.token)
+                        this.mpesaTokenHandler(result.token)
                     }
                 })
             }
         },
 
-        async stripeTokenHandler(token) {
+        async mpesaTokenHandler(token) {
             const items = []
             for (let i = 0; i < this.cart.items.length; i++) {
                 const item = this.cart.items[i]
@@ -271,15 +271,17 @@ export default {
                 }
                 items.push(obj)
             }
+            
             const data = {
                 'first_name': this.first_name,
                 'last_name': this.last_name,
                 'email': this.email,
                 'address': this.address,
-                'place': this.place,
+                'postal_code': this.postalcode,
+                'county': this.county,
                 'phone': this.phone,
                 'items': items,
-                'stripe_token': token.id
+                'mpesa_token': token.id
             }
             await axios
                 .post('/api/v1/checkout/', data)
@@ -294,6 +296,7 @@ export default {
                 this.$store.commit('setIsLoading', false)
         }
     },
+
     computed: {
         cartTotalPrice() {
             return this.cart.items.reduce((acc, curVal) => {

@@ -28,12 +28,17 @@
           <button
             class="flex justify-center items-center w-full sm:w-auto h-13 px-8 bg-green font-medium text-white rounded-xl whitespace-nowrap hover:shadow-primary transition-shadow duration-300"
           >
+          <router-link to="/sign-up">
             Get started
+          </router-link>
+            
           </button>
           <button
             class="flex justify-center items-center w-full sm:w-auto h-13 px-8 font-medium text-gray-900 border border-gray-900 rounded-xl whitespace-nowrap hover:shadow-xl transition-shadow duration-300"
           >
+          <router-link to="/exotic" >
             Explore menu
+          </router-link>
           </button>
         </div>
         <div class="flex pt-20">
