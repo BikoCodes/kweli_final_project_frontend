@@ -52,9 +52,13 @@
                       </p>
                       <hr>
 
-                      <router-link to="/cart/checkout" type="submit" class="btn-primary w-full py-3 text-lg">
-                        Proceed to Checkout
-                      </router-link>
+                      <button
+                        class="flex justify-center items-center h-13 px-7 mt-4 font-medium text-white bg-green rounded-xl hover:shadow-primary transition-shadow duration-300 whitespace-nowrap"
+                      >
+                        <router-link to="/cart/checkout" >
+                          Proceed to Checkout
+                        </router-link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -87,7 +91,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['removeFromCart'])
+    ...mapMutations(['removeFromCart']),
+
+    userAuth(){
+      $store.state.isAuthenticated
+    }
+
   },
 
   computed: {

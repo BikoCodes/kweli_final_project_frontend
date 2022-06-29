@@ -29,7 +29,6 @@ export default {
         initialItem: Object
     },
 
-
     data(){
         return {
             item: this.initialItem

@@ -13,6 +13,7 @@ import LogInView from '../views/LogInView.vue'
 import MyAccountView from '../views/MyAccountView.vue'
 import CheckOutView from '../views/CheckOutView.vue'
 import SuccessView from '../views/SuccessView.vue'
+import PaymentModeView from '../views/PaymentModeView.vue'
 
 
 const routes = [
@@ -47,6 +48,11 @@ const routes = [
     meta: {
       requireLogin: true
     }
+  },
+  {
+    path: '/cart/payment',
+    name: 'payment',
+    component: PaymentModeView,
   },
   {
     path: '/cart/success',
