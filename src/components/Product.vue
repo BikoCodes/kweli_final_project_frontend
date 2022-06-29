@@ -1,12 +1,11 @@
 <template>
   <main class="p-5">
       <div class="container mx-auto">
-        <div class="grid gap-6 grid-cols-5">
-          <div class="col-span-3">
-            <div class="aspect-square flex items-center">
-              <img :src="product.get_image" alt="" />
+        <div class="grid gap-4 grid-cols-5">
+        
+          <div class="aspect-square flex items-center">
+              <img :src="product.get_image" alt="" class="h-72 w-full object-cover" />
             </div>
-          </div>
           <div class="col-span-2">
             <h1 class="text-lg font-semibold">
               {{ product.name }}

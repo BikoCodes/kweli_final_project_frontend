@@ -1,7 +1,5 @@
 <template>
-    <div class="flex ">
-        <h1 class="title text-2xl">Checkout</h1>
-    </div>
+    
 
           <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -22,7 +20,7 @@
                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                               Total
                             </th>
-                            <th></th>
+                         
                           </tr>
                         </thead>
                         <tbody>
@@ -56,11 +54,22 @@
 
                    <div>
                    
-                    <main class="p-5">
+                    
+                   </div>
+                  </div>
+                </div>
+              </div>
+  
+
+   <main class="p-5">
                         <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
-                            <div class="grid grid-cols-1 sm:grid-cols-5 items-start gap-6">
+                            <div class="flex ">
+                                <h1 class="title text-2xl">Checkout</h1>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-5 items-center gap-6">
                                 <div class="col-span-3 bg-white p-4 rounded-lg shadow">
                                     <div class="mb-6">
+                                    
                                     <h2 class="text-xl mb-5">Shipping Details</h2>
                                     <h2 class="text-xl">* All fields are required</h2>
                         
@@ -150,7 +159,12 @@
                                         />
                                         </div>
                                     </div>
+
+                                    
                                     </div>
+                                </div>
+                                <div>
+                                    <button class="button is-dark" @click="submitForm">Pay with M-Pesa</button>
                                 </div>
                                 
                                 <div class="notification" v-if="errors.length">
@@ -159,22 +173,12 @@
 
                                 <hr>
 
-                                <div id="darajacard" class="mb-5">
-
-                                </div>
-                                <template v-if="cartTotalLength">
-                                    <hr>
-                                    <button class="button is-dark" @click="submitForm">Pay with M-Pesa</button>
-                                </template>
+                               
+                                
 
                             </div>
                         </div>
                     </main>
-                   </div>
-                  </div>
-                </div>
-              </div>
-  
 </template>
 
 <script>
@@ -188,7 +192,7 @@ export default {
             cart: {
                 items: []
             },
-            daraja: {},
+            mpesa: {},
             card: {},
             first_name: '',
             last_name: '',
@@ -202,7 +206,7 @@ export default {
         }
     },
     mounted() {
-        document.title = 'CheckOut | Food'
+        document.title = 'Checkout | Food'
 
         this.cart = this.$store.state.cart
 
@@ -215,10 +219,12 @@ export default {
             this.card.mount('#card-element')
         }
     },
+
     methods: {
         getItemTotal(item) {
             return item.quantity * item.product.price
         },
+
         submitForm() {
 
             this.errors = []

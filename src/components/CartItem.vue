@@ -61,6 +61,7 @@ export default {
 
         removeFromCart(item) {
             this.$emit('removeFromCart', item)
+            console.log("removeFromCart")
             this.updateCart()
         },
     }

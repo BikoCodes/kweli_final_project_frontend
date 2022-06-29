@@ -1,5 +1,4 @@
 <template>
-     
     <Cart/>
 </template>
 

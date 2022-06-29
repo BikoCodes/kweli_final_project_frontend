@@ -43,7 +43,10 @@ const routes = [
   {
     path: '/cart/checkout',
     name: 'checkout',
-    component: CheckOutView
+    component: CheckOutView,
+    meta: {
+      requireLogin: true
+    }
   },
   {
     path: '/cart/success',

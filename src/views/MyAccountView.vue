@@ -2,6 +2,16 @@
     <div>
         <h1 class="text-xl">My account</h1>
     </div>
+
+    <div>
+        <h3>My orders</h3>
+        
+        <OrderSummary 
+            v-for="order in orders"
+            :key="order.id"
+            :order="order"
+            />
+    </div>
   
 </template>
 

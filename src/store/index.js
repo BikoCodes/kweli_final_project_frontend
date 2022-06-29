@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -6,6 +8,7 @@ export default createStore({
     cart: {
       items: [],
     },
+    products:[],
     cartItemCount: 0,
     isAuthenticated: false,
     token: '',
@@ -57,6 +60,14 @@ export default createStore({
         state.isAuthenticated = false
     },
 
+    SET_CATEGORIES(state, products) {
+      state.products = products;
+    },
+
+    removeFromCart(state, product) {
+      state.cart.items = state.cart.items.filter(i => i.id !== product.id)
+    }
+
   },
 
   actions: {
@@ -64,13 +75,40 @@ export default createStore({
     addToCart({commit}, item){
       console.log(`store: addToCart ${item}`)
       commit('ADD_TO_CART',item)
-    }
+    },
+    async fetchCategory({commit}, categorySlug) {
+      console.log('here', categorySlug)
+      commit('setIsLoading', true)
+
+      axios
+          .get(`/api/v1/products/${categorySlug}/`)
+          .then(response => {
+              commit("SET_CATEGORIES", response.data)
+          })
+          .catch(error => {
+              console.log(error)
+          })
+      
+      commit('setIsLoading', false)
+  }
   },
 
   getters: {
     getCartItems: state => {
       return state.cart.items;
-    }
+    },
+
+    cartTotalPrice: state => {
+      let total = 0.0
+      state.cart.items.forEach( (record) => {
+        total += record.price * record.quantity
+      })
+      return total;
+    },
+    getCategories: state => {
+      console.log(state.products)
+      return state.products;
+    },
   },
 
   modules: {

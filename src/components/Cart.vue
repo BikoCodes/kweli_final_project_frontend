@@ -45,7 +45,7 @@
                     <div class="border-t border-gray-300 pt-4">
                       <div class="flex justify-between">
                         <span class="font-semibold">Subtotal</span>
-                        <span class="text-xl">Ksh{{ cartTotalLength.toFixed(2) }}, {{ cartTotalLength }} items</span>
+                        <span class="text-xl">Ksh{{ this.cartTotalPrice.toFixed(2) }}</span>
                       </div>
                       <p class="text-gray-500 mb-6">
                         Shipping and taxes calculated at checkout.
@@ -69,6 +69,7 @@
 <script>
 import axios from 'axios'
 import CartItem from '@/components/CartItem.vue'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: "Cart",
@@ -86,23 +87,19 @@ export default {
   },
 
   methods: {
-    removeFromCart(item) {
-            this.cart.items = this.cart.items.filter(i => i.product.id !== item.product.id)
-    }
+    ...mapMutations(['removeFromCart'])
   },
 
   computed: {
+    ...mapGetters(['cartTotalPrice']),
+
     cartTotalLength(){
       return this.cart.items.reduce((acc, curVal) => {
         return acc += curVal.quantity
       }, 0)
     },
 
-    cartTotalPrice(){
-      return this.cart.items.reduce((acc, curVal) => {
-        return acc += curVal.product.price * curVal.quantity
-      })
-    }
+    
 
   },
 
