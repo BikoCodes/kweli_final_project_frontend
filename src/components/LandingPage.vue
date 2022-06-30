@@ -65,12 +65,20 @@
         >
           <div class="flex -space-x-3">
             <div
-              v-for="i in 3"
               class="w-13 h-13 rounded-full border-4 border-white object-cover overflow-hidden"
-              :key="i.id"
             >
-              <img :src="`/img/avatar-${i}.jpeg`" alt="" />
+              <img src="../assets/avatar/blackcouple.webp" alt="" />
             </div>
+            <div
+              class="w-13 h-13 rounded-full border-4 border-white object-cover overflow-hidden"
+            >
+              <img src="../assets/avatar/blackwoman002.jpg" alt="" />
+            </div>
+            <div
+              class="w-13 h-13 rounded-full border-4 border-white object-cover overflow-hidden"
+            >
+              <img src="../assets/avatar/blackwon001.jpg" alt="" />
+            </div>-
           </div>
           <div class="pt-3 font-bold">Happy customers</div>
           <div class="flex items-center text-gray-600 leading-relaxed">

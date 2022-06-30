@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import CartItem from '@/components/CartItem.vue'
 import { mapGetters, mapMutations } from 'vuex'
 

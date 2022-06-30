@@ -39,13 +39,6 @@
             ></div>
           </router-link>
 
-          <router-link to="" class="text-lg md:text-base lg:text-lg font-medium group">
-            Contact Us
-            <div
-              class="h-0.5 bg-green scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"
-            ></div>
-          </router-link>
-
            <router-link to="/my-account" class="text-lg md:text-base lg:text-lg font-medium group"
             v-if="$store.state.isAuthenticated">
             My Account
@@ -134,15 +127,6 @@ export default {
 
   computed: {
     ...mapGetters(["getCartItems"]),
-    // cartTotalLength(){
-      // let totalLength = 0
-
-      // for(let i = 0; i < this.cart.items.length; i++){
-      //   totalLength += this.cart.items[i].quantity
-      // }
-    //   return this.getCartItems.length;
-    // }      
-
 
   }
 }

@@ -115,7 +115,7 @@
             </div>
              <button 
                 class="flex justify-center items-center h-13 px-7 mt-4 font-medium text-white bg-green rounded-xl hover:shadow-primary transition-shadow duration-300 whitespace-nowrap"
-                type="submit"
+                type="submit" 
             >
                 Proceed to Payment
             </button>
@@ -176,16 +176,22 @@ export default {
             
             if (this.postalcode === '') {
                 this.errors.push('The postal-code field is missing!')
+       
+            }
+
+            if(this.postalcode !== ''){
+                const toPath = this.$route.query.to || '/cart/payment'
+                this.$router.push(toPath)
             }
 
             e.preventDefault();
 
         },
-
+            
     },
 
     mounted() {
-        document.title = 'Checkout | Food'
+        document.title = 'Checkout | Cart'
 
         this.cart = this.$store.state.cart
 

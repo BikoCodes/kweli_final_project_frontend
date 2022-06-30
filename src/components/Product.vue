@@ -106,6 +106,7 @@
               </svg>
               Add to Cart
             </button>
+            
             <div class="text-gray-500 mb-6 wysiwyg-content">
               <h4 class="text-lg font-medium text-black">About the meal</h4>
               <ul class="list-disc pl-6">
@@ -122,6 +123,7 @@
 
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex';
 export default {
     name: "Product",
 
@@ -156,6 +158,10 @@ export default {
 
     mounted(){
         this.getProduct()
+    },
+
+    computed: {
+      ...mapGetters([''])
     }
 }
 </script>

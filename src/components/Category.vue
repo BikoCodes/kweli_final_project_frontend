@@ -26,9 +26,11 @@ export default {
     components: {
         ProductBox
     },
+
     computed:{
         ...mapGetters(['getCategories'])
     },
+    
     methods: {
         ...mapActions(['fetchCategory'])
     },

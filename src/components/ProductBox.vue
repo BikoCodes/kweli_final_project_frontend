@@ -105,30 +105,28 @@ export default {
       ...mapActions(['addToCart']),
 
       Cart(item) {
-            // if (isNaN(this.quantity) || this.quantity < 1){
-            //   this.quantity = 1
-            // }
-            item.quantity = 1;
+          
+          item.quantity = 1;
 
-            this.addToCart(item)
-            this.showNotification(`The Item was successfully added into your cart`)
+          this.addToCart(item)
+          this.showNotification(`The Item was successfully added into your cart`)
 
-        },
+      },
 
-        addToWatchlist() {
-            this.watchlistCount++;
-            this.showNotification(`The Item was successfully added in your watchlist`)
-        },
+      addToWatchlist() {
+          this.watchlistCount++;
+          this.showNotification(`The Item was successfully added in your watchlist`)
+      },
 
-        showNotification(message) {
-            this.notification.show = true;
-            this.notification.message = message;
-            alert(this.notification.message)
-            clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-                this.notification.show = false;
-            }, 3000)
-        },
+      showNotification(message) {
+          this.notification.show = true;
+          this.notification.message = message;
+          alert(this.notification.message)
+          clearTimeout(this.timeout);
+          this.timeout = setTimeout(() => {
+              this.notification.show = false;
+          }, 3000)
+      },
 
     },
 
